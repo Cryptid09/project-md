@@ -2,8 +2,7 @@ import Navbar from "../components/Navbar";
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <div className="container mx-auto mt-10">
+      <div className="container bg-white text-black dark:bg-black dark:text-white pt-3 mx-auto mt-10">
         <h1 className="text-4xl font-bold text-center">
           Welcome to My Website
         </h1>
