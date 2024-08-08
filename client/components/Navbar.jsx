@@ -5,11 +5,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import DarkModeIcon from "@mui/icons-material/Brightness4";
 import LightModeIcon from "@mui/icons-material/Brightness7";
-import HomeIcon from "@mui/icons-material/Home";
-import ForumIcon from "@mui/icons-material/Forum";
-import PeopleIcon from "@mui/icons-material/People";
+import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
+import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
-import ArticleIcon from "@mui/icons-material/Article";
+import SummarizeOutlinedIcon from "@mui/icons-material/SummarizeOutlined";
+import { usePathname } from "next/navigation";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -29,45 +30,72 @@ export default function Navbar() {
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
-
+  const pathname = usePathname();
   return (
-    <nav className="text-white absolute top-0 border h-screen">
+    <nav className="font-mono text-white absolute top-0 border-r border-gray-500 h-screen">
       <Link href="/">
         <div className="text-2xl p-4 mt-10 font-bold cursor-pointer">Nexus</div>
       </Link>
 
-      <div className=" pr-3 items-center">
-        <button
-          onClick={toggleMenu}
-          className="block md:hidden   focus:outline-none"
+      <div className="grid gap-5 text-sm">
+        <div
+          className={` ${
+            pathname === "/" ? `bg-[#1e1e1f]` : `text-gray-400`
+          } mx-1.5 py-1 rounded-lg text-center`}
         >
-          {isOpen ? <CloseIcon /> : <MenuIcon />}
-        </button>
-        <div>
           <Link href="/">
-            <HomeIcon />
-            <div className="font-sm cursor-pointer">Home</div>
+            <HomeTwoToneIcon />
+            <p>Home</p>
           </Link>
-          <Link href="/notes">
-            <ArticleIcon />
-            <div className="cursor-pointer ">Notes</div>
-          </Link>
+        </div>
+
+        <div
+          className={` ${
+            pathname === "/community" ? `bg-[#1e1e1f]` : `text-gray-400`
+          } mx-1.5 py-1 rounded-lg text-center`}
+        >
           <Link href="/community">
-            <PeopleIcon />
-            <div className="cursor-pointer ">Community</div>
+            <PeopleAltOutlinedIcon />
+            <p>Communtiy</p>
           </Link>
+        </div>
+
+        <div
+          className={` ${
+            pathname === "/chat" ? `bg-[#1e1e1f]` : `text-gray-400`
+          } mx-1.5 py-1 rounded-lg text-center`}
+        >
           <Link href="/chat">
-            <ForumIcon />
-            <div className="cursor-pointer ">Chat</div>
+            <QuestionAnswerOutlinedIcon />
+            <p>Chat</p>
+          </Link>
+        </div>
+
+        <div
+          className={` ${
+            pathname === "/notes" ? `bg-[#1e1e1f]` : `text-gray-400`
+          } mx-1.5 py-1 rounded-lg text-center`}
+        >
+          <Link href="/notes">
+            <SummarizeOutlinedIcon />
+            <p>Notes</p>
           </Link>
         </div>
       </div>
-      <button
-        onClick={toggleDarkMode}
-        className=" p-1 text-white bg-gray-800 rounded-full focus:outline-none"
-      >
-        {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
-      </button>
+
+      <div className=" w-full text-sm grid gap-4 justify-center">
+        <div className="text-center">
+          <SettingsIcon />
+          <p>Settings</p>
+        </div>
+
+        <button
+          onClick={toggleDarkMode}
+          className=" p-1 text-white bg-[#201e1e] rounded-full focus:outline-none"
+        >
+          {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
+        </button>
+      </div>
     </nav>
   );
 }
