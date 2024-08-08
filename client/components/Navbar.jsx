@@ -5,7 +5,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import DarkModeIcon from "@mui/icons-material/Brightness4";
 import LightModeIcon from "@mui/icons-material/Brightness7";
-
+import HomeIcon from "@mui/icons-material/Home";
+import ForumIcon from "@mui/icons-material/Forum";
+import PeopleIcon from "@mui/icons-material/People";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ArticleIcon from "@mui/icons-material/Article";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -27,51 +31,43 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="font-mono my-3 pb-3 flex justify-between fixed top-0 w-full z-50 ">
+    <nav className="text-white absolute top-0 border h-screen">
       <Link href="/">
-        <div className="text-2xl pl-8 font-bold cursor-pointer">Nexus</div>
+        <div className="text-2xl p-4 mt-10 font-bold cursor-pointer">Nexus</div>
       </Link>
 
-      <div className="flex pr-3 items-center">
+      <div className=" pr-3 items-center">
         <button
           onClick={toggleMenu}
-          className="block md:hidden text-black dark:text-white focus:outline-none"
+          className="block md:hidden   focus:outline-none"
         >
           {isOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
-        <div
-          className={`${
-            isOpen ? "block" : "hidden"
-          } text-lg pr-3 gap-8 grid mt-2 md:flex `}
-        >
+        <div>
           <Link href="/">
-            <div className=" cursor-pointer hover:text-gray-500 dark:hover:text-gray-300">
-              Home
-            </div>
+            <HomeIcon />
+            <div className="font-sm cursor-pointer">Home</div>
           </Link>
           <Link href="/notes">
-            <div className="cursor-pointer hover:text-gray-500 dark:hover:text-gray-300">
-              Notes
-            </div>
+            <ArticleIcon />
+            <div className="cursor-pointer ">Notes</div>
           </Link>
           <Link href="/community">
-            <div className="cursor-pointer hover:text-gray-500 dark:hover:text-gray-300">
-              Community
-            </div>
+            <PeopleIcon />
+            <div className="cursor-pointer ">Community</div>
           </Link>
           <Link href="/chat">
-            <div className="cursor-pointer hover:text-gray-500 dark:hover:text-gray-300">
-              Chat
-            </div>
+            <ForumIcon />
+            <div className="cursor-pointer ">Chat</div>
           </Link>
         </div>
-        <button
-          onClick={toggleDarkMode}
-          className=" p-1 text-white bg-gray-800 rounded-full focus:outline-none"
-        >
-          {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
-        </button>
       </div>
+      <button
+        onClick={toggleDarkMode}
+        className=" p-1 text-white bg-gray-800 rounded-full focus:outline-none"
+      >
+        {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
+      </button>
     </nav>
   );
 }
