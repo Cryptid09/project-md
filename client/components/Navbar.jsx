@@ -1,6 +1,5 @@
 "use client";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
-import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -12,7 +11,7 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
 import { usePathname } from "next/navigation";
-import { LightModeOutlined } from "@mui/icons-material";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
