@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}> 
-        <Navbar className='max-w-fit' />
+        <Navbar  />
         {children}
       </body>
     </html>

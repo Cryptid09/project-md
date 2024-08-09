@@ -35,7 +35,7 @@ export default function Navbar() {
   };
   const pathname = usePathname();
   return (
-    <nav className="max-w-screen w-screen md:w-auto md:grid  dark:text-white text-black dark:bg-[#0001] absolute top-0 border-r bg-white border-gray-700 h-screen">
+    <nav className="max-w-screen w-screen md:w-auto md:grid  dark:text-white text-black dark:bg-[#0001] fixed top-0 border-r bg-white border-gray-700 h-screen">
       {/* Heading */}
       <div className="flex justify-between">
         <Link href="/">
@@ -47,7 +47,16 @@ export default function Navbar() {
           onClick={toggleMenu}
           className="block w-full md:hidden pb-5 focus:outline-none"
         >
-          {isOpen ?<div className="h-screen bg-[#191818] flex justify-end opacity-70" ><CloseIcon className="mt-4 mr-3" /></div> :<div className=" flex justify-end "> <MenuIcon /></div>}
+          {isOpen ? (
+            <div className="h-screen bg-[#191818] flex justify-end opacity-70">
+              <CloseIcon className="mt-4 mr-3" />
+            </div>
+          ) : (
+            <div className=" flex justify-end ">
+              {" "}
+              <MenuIcon />
+            </div>
+          )}
         </button>
       </div>
 
@@ -107,7 +116,7 @@ export default function Navbar() {
           </div>
         </div>
         <hr className="hidden md:block mx-3 border-t dark:border-white  border-black my-8"></hr>
-        
+
         <div className="  w-full text-sm grid gap-4 justify-center">
           <div className="mx-1.5 py-1 rounded-lg md:mt-0 mt-4 text-center">
             <Link href="/setting">
