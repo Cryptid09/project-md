@@ -8,7 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: { fontFamily: {
-      roboto: ['Poppins', 'sans-serif'],
+      poppins: ['Poppins', 'sans-serif'],
+      Noto: ['Noto Sans JP', 'sans-serif'],
+      Sankofa: ['Sankofa Display', 'sans-serif'],
       
     },
       backgroundImage: {

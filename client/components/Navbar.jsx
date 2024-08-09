@@ -1,19 +1,22 @@
 "use client";
+import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import DarkModeIcon from "@mui/icons-material/Brightness4";
-import LightModeIcon from "@mui/icons-material/Brightness7";
-import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
+import NightlightRoundOutlinedIcon from "@mui/icons-material/NightlightRoundOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
-import SummarizeOutlinedIcon from "@mui/icons-material/SummarizeOutlined";
+import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
 import { usePathname } from "next/navigation";
+import { LightModeOutlined } from "@mui/icons-material";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isRotated, setIsRotated] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -32,69 +35,102 @@ export default function Navbar() {
   };
   const pathname = usePathname();
   return (
-    <nav className="font-mono text-white absolute top-0 border-r border-gray-500 h-screen">
-      <Link href="/">
-        <div className="text-2xl p-4 mt-10 font-bold cursor-pointer">Nexus</div>
-      </Link>
-
-      <div className="grid gap-5 text-sm">
-        <div
-          className={` ${
-            pathname === "/" ? `bg-[#1e1e1f]` : `text-gray-400`
-          } mx-1.5 py-1 rounded-lg text-center`}
+    <nav className="max-w-screen w-screen md:w-auto md:grid  dark:text-white text-black dark:bg-[#0001] absolute top-0 border-r bg-white border-gray-700 h-screen">
+      {/* Heading */}
+      <div className="flex justify-between">
+        <Link href="/">
+          <div className="text-4xl font-Sankofa p-4 md:mt-10 cursor-pointer mb-6">
+            Nexus
+          </div>
+        </Link>
+        <button
+          onClick={toggleMenu}
+          className="block w-full md:hidden pb-5 focus:outline-none"
         >
-          <Link href="/">
-            <HomeTwoToneIcon />
-            <p>Home</p>
-          </Link>
-        </div>
-
-        <div
-          className={` ${
-            pathname === "/community" ? `bg-[#1e1e1f]` : `text-gray-400`
-          } mx-1.5 py-1 rounded-lg text-center`}
-        >
-          <Link href="/community">
-            <PeopleAltOutlinedIcon />
-            <p>Communtiy</p>
-          </Link>
-        </div>
-
-        <div
-          className={` ${
-            pathname === "/chat" ? `bg-[#1e1e1f]` : `text-gray-400`
-          } mx-1.5 py-1 rounded-lg text-center`}
-        >
-          <Link href="/chat">
-            <QuestionAnswerOutlinedIcon />
-            <p>Chat</p>
-          </Link>
-        </div>
-
-        <div
-          className={` ${
-            pathname === "/notes" ? `bg-[#1e1e1f]` : `text-gray-400`
-          } mx-1.5 py-1 rounded-lg text-center`}
-        >
-          <Link href="/notes">
-            <SummarizeOutlinedIcon />
-            <p>Notes</p>
-          </Link>
-        </div>
+          {isOpen ?<div className="h-screen bg-[#191818] flex justify-end opacity-70" ><CloseIcon className="mt-4 mr-3" /></div> :<div className=" flex justify-end "> <MenuIcon /></div>}
+        </button>
       </div>
 
-      <div className=" w-full text-sm grid gap-4 justify-center">
-        <div className="text-center">
-          <SettingsIcon />
-          <p>Settings</p>
-        </div>
+      {/* Menu */}
+      <div
+        className={`${
+          isOpen ? `block` : `hidden`
+        } bg-[#bbb6b6] md:bg-white border-r md:border-0 dark:bg-[#212121] md:dark:bg-[#000] absolute top-0  md:relative h-screen  z-50 w-3/4 md:w-full md:block text-xs`}
+      >
+        <div className="grid pt-20 md:pt-0 gap-5 ">
+          <div
+            className={` ${
+              pathname === "/" ? `bg-[#2f2f31] text-gray-300` : `bg-inherit`
+            } mx-1.5 py-1 rounded-lg text-center`}
+          >
+            <Link href="/">
+              <HomeOutlinedIcon className="text-3xl" />
+              <p>Home</p>
+            </Link>
+          </div>
 
-        <button
-          onClick={toggleDarkMode}
-          className=" p-1 text-white bg-[#201e1e] rounded-full focus:outline-none"
-        >
-          {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
-        </button>
+          <div
+            className={` ${
+              pathname === "/community"
+                ? `bg-[#1e1e1f] text-gray-300`
+                : `bg-inherit`
+            } mx-1.5 py-1 rounded-lg text-center`}
+          >
+            <Link href="/community">
+              <PeopleAltOutlinedIcon className="text-3xl" />
+              <p>Communtiy</p>
+            </Link>
+          </div>
+
+          <div
+            className={` ${
+              pathname === "/chat" ? `bg-[#1e1e1f] text-gray-300` : `bg-inherit`
+            } mx-1.5 py-1 rounded-lg text-center`}
+          >
+            <Link href="/chat">
+              <QuestionAnswerOutlinedIcon className="text-3xl" />
+              <p>Chat</p>
+            </Link>
+          </div>
+
+          <div
+            className={` ${
+              pathname === "/notes"
+                ? `bg-[#1e1e1f] text-gray-300`
+                : `bg-inherit`
+            } mx-1.5 py-1 rounded-lg text-center`}
+          >
+            <Link href="/notes">
+              <ClassOutlinedIcon className="text-3xl" />
+              <p>Notes</p>
+            </Link>
+          </div>
+        </div>
+        <hr className="hidden md:block mx-3 border-t dark:border-white  border-black my-8"></hr>
+        
+        <div className="  w-full text-sm grid gap-4 justify-center">
+          <div className="mx-1.5 py-1 rounded-lg md:mt-0 mt-4 text-center">
+            <Link href="/setting">
+              <SettingsIcon
+                onClick={() => setIsRotated(!isRotated)}
+                className={`transform transition-transform duration-300 ${
+                  isRotated ? "rotate-90" : "rotate-0"
+                }`}
+              />
+              <p onClick={() => setIsRotated(!isRotated)}>Settings</p>
+            </Link>
+          </div>
+          <button
+            onClick={toggleDarkMode}
+            className=" p-1 text-white bg-[#201e1e] rounded-full focus:outline-none"
+          >
+            {isDarkMode ? (
+              <LightModeRoundedIcon />
+            ) : (
+              <NightlightRoundOutlinedIcon />
+            )}
+          </button>
+        </div>
       </div>
     </nav>
   );
