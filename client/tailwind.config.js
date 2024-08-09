@@ -7,7 +7,12 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
+    extend: { fontFamily: {
+      poppins: ['Poppins', 'sans-serif'],
+      Noto: ['Noto Sans JP', 'sans-serif'],
+      Sankofa: ['Sankofa Display', 'sans-serif'],
+      
+    },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

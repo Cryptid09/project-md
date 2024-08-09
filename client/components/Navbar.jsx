@@ -1,18 +1,21 @@
 "use client";
+import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import DarkModeIcon from "@mui/icons-material/Brightness4";
-import LightModeIcon from "@mui/icons-material/Brightness7";
-import HomeIcon from "@mui/icons-material/Home";
-import ForumIcon from "@mui/icons-material/Forum";
-import PeopleIcon from "@mui/icons-material/People";
+import NightlightRoundOutlinedIcon from "@mui/icons-material/NightlightRoundOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
-import ArticleIcon from "@mui/icons-material/Article";
+import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
+import { usePathname } from "next/navigation";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isRotated, setIsRotated] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -29,45 +32,114 @@ export default function Navbar() {
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
-
+  const pathname = usePathname();
   return (
-    <nav className="text-white absolute top-0 border h-screen">
-      <Link href="/">
-        <div className="text-2xl p-4 mt-10 font-bold cursor-pointer">Nexus</div>
-      </Link>
-
-      <div className=" pr-3 items-center">
+    <nav className="max-w-screen w-screen md:w-auto md:grid  dark:text-white text-black dark:bg-[#0001] fixed top-0 border-r bg-white border-gray-700 h-screen">
+      {/* Heading */}
+      <div className="flex justify-between">
+        <Link href="/">
+          <div className="text-4xl font-Sankofa p-4 md:mt-10 cursor-pointer mb-6">
+            Nexus
+          </div>
+        </Link>
         <button
           onClick={toggleMenu}
-          className="block md:hidden   focus:outline-none"
+          className="block w-full md:hidden pb-5 focus:outline-none"
         >
-          {isOpen ? <CloseIcon /> : <MenuIcon />}
+          {isOpen ? (
+            <div className="h-screen bg-[#191818] flex justify-end opacity-70">
+              <CloseIcon className="mt-4 mr-3" />
+            </div>
+          ) : (
+            <div className=" flex justify-end ">
+              {" "}
+              <MenuIcon />
+            </div>
+          )}
         </button>
-        <div>
-          <Link href="/">
-            <HomeIcon />
-            <div className="font-sm cursor-pointer">Home</div>
-          </Link>
-          <Link href="/notes">
-            <ArticleIcon />
-            <div className="cursor-pointer ">Notes</div>
-          </Link>
-          <Link href="/community">
-            <PeopleIcon />
-            <div className="cursor-pointer ">Community</div>
-          </Link>
-          <Link href="/chat">
-            <ForumIcon />
-            <div className="cursor-pointer ">Chat</div>
-          </Link>
+      </div>
+
+      {/* Menu */}
+      <div
+        className={`${
+          isOpen ? `block` : `hidden`
+        } bg-[#bbb6b6] md:bg-white border-r md:border-0 dark:bg-[#212121] md:dark:bg-[#000] absolute top-0  md:relative h-screen  z-50 w-3/4 md:w-full md:block text-xs`}
+      >
+        <div className="grid pt-20 md:pt-0 gap-5 ">
+          <div
+            className={` ${
+              pathname === "/" ? `bg-[#2f2f31] text-gray-300` : `bg-inherit`
+            } mx-1.5 py-1 rounded-lg text-center`}
+          >
+            <Link href="/">
+              <HomeOutlinedIcon className="text-3xl" />
+              <p>Home</p>
+            </Link>
+          </div>
+
+          <div
+            className={` ${
+              pathname === "/community"
+                ? `bg-[#1e1e1f] text-gray-300`
+                : `bg-inherit`
+            } mx-1.5 py-1 rounded-lg text-center`}
+          >
+            <Link href="/community">
+              <PeopleAltOutlinedIcon className="text-3xl" />
+              <p>Communtiy</p>
+            </Link>
+          </div>
+
+          <div
+            className={` ${
+              pathname === "/chat" ? `bg-[#1e1e1f] text-gray-300` : `bg-inherit`
+            } mx-1.5 py-1 rounded-lg text-center`}
+          >
+            <Link href="/chat">
+              <QuestionAnswerOutlinedIcon className="text-3xl" />
+              <p>Chat</p>
+            </Link>
+          </div>
+
+          <div
+            className={` ${
+              pathname === "/notes"
+                ? `bg-[#1e1e1f] text-gray-300`
+                : `bg-inherit`
+            } mx-1.5 py-1 rounded-lg text-center`}
+          >
+            <Link href="/notes">
+              <ClassOutlinedIcon className="text-3xl" />
+              <p>Notes</p>
+            </Link>
+          </div>
+        </div>
+        <hr className="hidden md:block mx-3 border-t dark:border-white  border-black my-8"></hr>
+
+        <div className="  w-full text-sm grid gap-4 justify-center">
+          <div className="mx-1.5 py-1 rounded-lg md:mt-0 mt-4 text-center">
+            <Link href="/setting">
+              <SettingsIcon
+                onClick={() => setIsRotated(!isRotated)}
+                className={`transform transition-transform duration-300 ${
+                  isRotated ? "rotate-90" : "rotate-0"
+                }`}
+              />
+              <p onClick={() => setIsRotated(!isRotated)}>Settings</p>
+            </Link>
+          </div>
+          <button
+            onClick={toggleDarkMode}
+            className=" p-1 text-white bg-[#201e1e] rounded-full focus:outline-none"
+          >
+            {isDarkMode ? (
+              <LightModeRoundedIcon />
+            ) : (
+              <NightlightRoundOutlinedIcon />
+            )}
+          </button>
         </div>
       </div>
-      <button
-        onClick={toggleDarkMode}
-        className=" p-1 text-white bg-gray-800 rounded-full focus:outline-none"
-      >
-        {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
-      </button>
     </nav>
   );
 }
