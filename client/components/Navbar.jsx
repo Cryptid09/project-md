@@ -34,9 +34,9 @@ export default function Navbar() {
   };
   const pathname = usePathname();
   return (
-    <nav className="max-w-screen w-screen md:w-auto md:grid  dark:text-white text-black dark:bg-[#0001] fixed top-0 border-r bg-white border-gray-700 h-screen">
+    <nav className="max-w-screen  md:h-screen w-screen md:w-auto md:grid  dark:text-white text-black dark:bg-[#0001] fixed top-0 border-r bg-white border-gray-700 ">
       {/* Heading */}
-      <div className="flex justify-between">
+      <div className="flex dark:bg-[#0001] bg-white justify-between">
         <Link href="/">
           <div className="text-4xl font-Sankofa p-4 md:mt-10 cursor-pointer mb-6">
             Nexus
@@ -63,7 +63,7 @@ export default function Navbar() {
       <div
         className={`${
           isOpen ? `block` : `hidden`
-        } bg-[#bbb6b6] md:bg-white border-r md:border-0 dark:bg-[#212121] md:dark:bg-[#000] absolute top-0  md:relative h-screen  z-50 w-3/4 md:w-full md:block text-xs`}
+        } bg-[#bbb6b6] md:bg-white border-r md:border-0 dark:bg-[#212121] md:dark:bg-[#0001] absolute top-0  md:relative h-screen  z-50 w-3/4 md:w-full md:block text-xs`}
       >
         <div className="grid pt-20 md:pt-0 gap-5 ">
           <div
