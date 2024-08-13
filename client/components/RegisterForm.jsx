@@ -1,3 +1,5 @@
+'use client'
+import { useState } from "react";
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

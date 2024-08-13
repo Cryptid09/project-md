@@ -1,3 +1,6 @@
+'use client'
+import Link from "next/link";
+import { useState } from "react";
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,7 +58,9 @@ const SignInForm = () => {
         >
           Sign In
         </button>
+        <div className="text-black">Not Registered click <Link href='/Auth/signup' className="text-blue-500 hover:underline">here</Link></div>
       </form>
+     
     </div>
   );
 };
